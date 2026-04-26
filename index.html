@@ -29,6 +29,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      scroll-behavior: smooth; /* 让跳转更丝滑 */
     }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
@@ -253,19 +254,17 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav id="navbar">
     <div class="container nav-inner">
       <div class="logo">MENG<span>XH</span></div>
       <div class="nav-links">
-        <a href="public/public/#about">ABOUT</a>
-        <a href="public/public/#portfolio">PORTFOLIO</a>
-        <a href="public/public/#beyond">MY LIFE</a>
+        <a href="#about">ABOUT</a>
+        <a href="#portfolio">PORTFOLIO</a>
+        <a href="#beyond">MY LIFE</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-glow"></div>
     <div class="container hero-grid">
@@ -275,11 +274,11 @@
         <h2>UX Designer / 工业设计</h2>
         <p>以前瞻性视角探索数字交互、物理空间与产品逻辑的边界。</p>
         <div class="btn-group">
-          <a href="./public/#portfolio" class="btn btn-primary">
+          <a href="#portfolio" class="btn btn-primary">
             探索作品
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
-          <a href="./public/#contact" class="btn btn-outline">联系我</a>
+          <a href="#contact" class="btn btn-outline">联系我</a>
           <a href="./public/孟祥昊_产品体验设计师_韩国弘益大学硕士_2026届应届毕业生.pdf" download class="btn btn-outline">
             下载简历
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -295,7 +294,6 @@
     </div>
   </section>
 
-  <!-- About Section -->
   <section id="about" class="content">
     <div class="container about-grid">
       <div>
@@ -338,7 +336,6 @@
     </div>
   </section>
 
-  <!-- Portfolio Section -->
   <section id="portfolio" class="content">
     <div class="container">
       <div class="section-header">
@@ -350,24 +347,20 @@
       </div>
       
       <div class="portfolio-grid" id="portfolio-container">
-        <!-- JS Rendering Area -->
-      </div>
+        </div>
     </div>
   </section>
 
-  <!-- My Life Section -->
   <section id="beyond" class="content">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">MY LIFE <span>/</span> 生活中的我</h2>
       </div>
       <div class="portfolio-grid" id="life-container">
-         <!-- JS Rendering Area -->
-      </div>
+         </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer id="contact">
     <div class="container">
       <div class="footer-top">
@@ -376,13 +369,13 @@
           <p style="color: var(--color-text-sub); font-size: 14px;">期待与你相遇，一起做有意义的设计。</p>
         </div>
         <div class="footer-contact">
-          <a href="./public/mailto:mengxianghao@163.com" class="email-link">
+          <a href="mailto:mengxianghao@163.com" class="email-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; margin-right: 12px; color: var(--color-text-sub);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
             mengxianghao@163.com
           </a>
           
           <div style="position: relative; cursor: pointer; color: var(--color-text-sub); transition: color 0.3s;" 
-               onclick="togglePhone()" id="phone-container">
+                onclick="togglePhone()" id="phone-container">
             <span id="phone-label" class="animate-in" style="font-size: 14px; font-weight: 500; letter-spacing: 1px;">电话 / PHONE</span>
             <span id="phone-number" class="animate-in" style="display: none; color: white; font-size: 14px; font-weight: 600; letter-spacing: 2px;">+86 17639107673</span>
           </div>
@@ -405,7 +398,6 @@
     </div>
   </footer>
 
-  <!-- Project Detail Modal -->
   <div id="modal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">
@@ -426,22 +418,13 @@
   <script>
     // --- GLOBAL CONFIG ---
     const CONFIG = {
-      // ✅ 提示：如果在中国无法查看图片，请将 useLocal 设置为 true
-      // 并将所有图片下载至 ./images/ 目录下，文件名命名为对应的 ID
       useLocal: false, 
       localPath: "./images/"
     };
 
-    /**
-     * 智能路径解析器
-     * 处理原理：如果是本地路径则直接返回
-     */
     function resolveUrl(idOrPath, isHighRes = false) {
       if (!idOrPath) return "";
-      // 如果已经是相对路径或完整URL，直接返回
-      if (idOrPath.startsWith("./") || idOrPath.startsWith("") || idOrPath.startsWith("http")) return idOrPath;
-      
-      // 本地模式：假设文件为 .jpg
+      if (idOrPath.startsWith("./") || idOrPath.startsWith("/") || idOrPath.startsWith("http")) return idOrPath;
       return `${CONFIG.localPath}${idOrPath}.jpg`;
     }
 
@@ -480,7 +463,7 @@
           "./public/mengdao/mengxq2-28.webp", "./public/mengdao/mengxq2-29.webp", "./public/mengdao/mengxq2-30.webp",
           "./public/mengdao/mengxq2-31.webp"
         ],
-        fullDescription: "<p style='margin-bottom: 16px;'>《梦到（꾸며)》是一个基于人工智能视觉生成与 Web3 技术的全新梦境社交系统。在日常生活中，人们常常为醒来后迅速忘却梦境而感到惋惜。这是一个旨在解决“醒后遗忘”痛点的数字体验产品。</p><p>通过整合尖端的 AI 图像生成技术与语音/文字输入，用户可以在醒来的第一时间迅速将梦境残片可视化输出。平台不仅提供生成服务，更通过区块链技术为每一份“梦”的数字艺术作品赋予版权确权保护，打造一个前所未有的潜意识数字流通与情感共鸣空间。</p>"
+        fullDescription: "<p style='margin-bottom: 16px;'>《梦到（꾸며)》是一个基于人工智能视觉生成与 Web3 技术的全新梦境社交系统。</p>"
       },
       {
         title: "YUNYOU",
@@ -504,35 +487,34 @@
           "./public/yunyou/file-cover---13.webp",
           "./public/yunyou/file-cover---14.webp"
         ],
-        fullDescription: "<p style='margin-bottom: 16px;'>《YUNYOU》是一个专为开放世界游戏玩家打造的 SNS 互助与社交平台。本系统旨在解决玩家在浩瀚游戏世界中面临的组队困难、虚拟资产交易安全隐患，并关注长时间游玩带来的健康管理问题。</p><p>通过建立一个高信任度的玩家闭环生态，《YUNYOU》整合了智能队友匹配、基于健康数据的防沉迷与护眼提醒，以及由智能合约保障的安全交易功能。致力于为玩家提供一个更加健康、高效、温暖的游戏内支持网络。</p>"
+        fullDescription: "<p style='margin-bottom: 16px;'>《YUNYOU》是一个专为开放世界游戏玩家打造的 SNS 互助与社交平台。</p>"
       },
       {
-        title: "旧时光（죠시광 탕수이)",
+        title: "旧时光（죠시광 탕수и)",
         category: "空间叙事 (Spatial Design)",
-        description: "韩国首尔紫阳洞传统糖水铺商业空间。融合白橡木与青花瓷元素，实现中式食疗文化的现代化输出。",
+        description: "韩国首尔紫阳洞传统糖水铺商业空间。融合白橡木与青花瓷元素。",
         image: "jsgfm.webp",
-        detailImages: ["jsg.webp"],
-        fullDescription: "<p style='margin-bottom: 16px;'>《旧时光（죠시광 탕수이)》是位于韩国首尔紫阳洞的一处传统中式糖水铺商业空间设计。本项目旨在将中国传统的食疗文化通过现代化的空间叙事进行重构与输出，为现代都市人打造一处疗愈身心的落脚点。</p><p>在空间材质上，设计巧妙融合了温暖亲切的白橡木与清冷典雅的青花瓷元素。木质的温度中和了瓷器的冰冷感觉，不仅隐喻了传统与现代的碰撞，更在感官体验上创造出了层次分明、动静相宜的独特氛围感。</p>"
+        detailImages: ["./public/jsg.webp"],
+        fullDescription: "<p>《旧时光》空间设计。</p>"
       },
       {
         title: "Escort",
         category: "产品设计 (Product Design)",
-        description: "阿尔茨海默病患者陪伴与照护系统。机器人硬件与 APP 联动，聚焦安全与健康监测。",
+        description: "阿尔茨海默病患者陪伴与照护系统。",
         image: "escort/escortfm.webp",
         detailImages: [
           "./public/escort/escort.webp", "./public/escort/escortui (1).webp", "./public/escort/escortui (2).webp",
-          "./public/escort/escortui (3).webp", "./public/escort/escortui (4).webp", "./public/escort/escortui (5).webp",
-          "./public/escort/escortui (6).webp", "./public/escort/escortui (7).webp", "./public/escort/escortui (8).webp"
+          "./public/escort/escortui (3).webp", "./public/escort/escortui (4).webp", "./public/escort/escortui (5).webp"
         ],
-        fullDescription: "<p style='margin-bottom: 16px;'>《Escort》是一个专门为阿尔茨海默病患者群体打造的陪伴与照护系统。该设计巧妙地将智能机器人硬件实体与移动端 APP 进行无缝联动，全方位聚焦于特殊人群在日常生活中的安全保障与健康状况监测。</p><p>在产品理念上，《Escort》致力于探寻技术理性与人文关怀的最佳平衡点。通过非侵入式的日常陪伴、自动化的生命体征数据反馈以及智能化的紧急危险预警机制，它不仅赋予了患者更多独立生活的尊严与安心感，同时也极大地缓解了家属与看护者的精神焦虑和看护压力。</p>"
+        fullDescription: "<p>《Escort》照护系统。</p>"
       },
       {
         title: "Mosquito Grave",
         category: "产品设计 (Product Design)",
-        description: "基于生物模拟原理的公共防蚊设施。通过模拟二氧化碳释放精准防控登革热。",
+        description: "基于生物模拟原理的公共防蚊设施。",
         image: "Mosquito Grave/wenzifm.webp",
         detailImages: ["./public/Mosquito Grave/wenzixq.webp"],
-        fullDescription: "<p style='margin-bottom: 16px;'>《Mosquito Grave》是一款基于前沿生物模拟原理打造的公共防蚊与卫生设施设计。本项目旨在从城市公共健康管理的维度出发，通过环保且高效的物理诱捕手段，精准防控登革热等蚊媒传染病的传播。</p><p>在技术机制上，该设施通过仿生学原理模拟人体呼吸释放微量二氧化碳及热量，持续且安全地吸引蚊虫进入捕杀闭环。设计语言上则追求极简直观与环境融合，使其能在各种城市公共空间（如公园、社区、广场）中静默地发挥作用，构建安全的户外屏障。</p>"
+        fullDescription: "<p>《Mosquito Grave》设计。</p>"
       }
     ];
 
@@ -541,45 +523,32 @@
         title: "留子变厨子",
         description: "你可以怀疑我的学历，但是不能怀疑我的厨艺！",
         image: "zuofanfm.webp",
-        videos: [
-          { title: "厨艺展示", url: "https://v.douyin.com/7Pzn54nR-RQ/" }
-        ]
+        videos: [{ title: "厨艺展示", url: "https://v.douyin.com/7Pzn54nR-RQ/" }]
       },
       {
         title: "没事儿就爱旅点儿游",
         description: "人就应该待在没有天花板的地方。",
         image: "lvxingfm.webp",
-        videos: [
-          { title: "新疆旅行", url: "https://v.douyin.com/VvgoRpvBiXc/" },
-          { title: "福建旅行", url: "https://v.douyin.com/ZoP0jcP3DP0/" }
-        ]
+        videos: [{ title: "新疆旅行", url: "https://v.douyin.com/VvgoRpvBiXc/" }]
       }
     ];
 
-    // --- RENDERING LOGIC ---
     function initPortfolio() {
       const container = document.getElementById('portfolio-container');
       if(!container) return;
-      
       projects.forEach((proj, idx) => {
         const card = document.createElement('div');
         card.className = 'card';
         card.onclick = () => openModal(idx);
-        
-        const imgUrl = resolveUrl(proj.image);
-
         card.innerHTML = `
           <div class="card-cat">${proj.category}</div>
           <div class="card-title">${proj.title}</div>
           <div class="card-desc">${proj.description}</div>
           <div class="card-img-wrapper">
-            <img src="./public/${imgUrl}" alt="${proj.title}" loading="lazy">
+            <img src="./public/${proj.image}" alt="${proj.title}" loading="lazy">
             <div class="card-num">0${idx + 1}</div>
           </div>
-          <div class="card-action">
-            View Details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
+          <div class="card-action">View Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
         `;
         container.appendChild(card);
       });
@@ -588,60 +557,36 @@
     function initLife() {
       const container = document.getElementById('life-container');
       if(!container) return;
-      
       activities.forEach(act => {
         const card = document.createElement('div');
         card.className = 'card';
-        const imgUrl = resolveUrl(act.image);
-
-        let videoButtons = '';
-        if (act.videos) {
-          videoButtons = `
-            <div style="position: absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 12px; background:rgba(0,0,0,0.5); opacity:0; transition:opacity 0.3s; z-index: 20;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
-               ${act.videos.map(v => `
-                 <a href="${v.url}" target="_blank" style="background:var(--color-accent-red); color:white; padding:8px 16px; border-radius:20px; font-size:12px; font-weight:bold; display:flex; align-items:center; gap:8px;">
-                   <svg style="width:16px; height:16px;" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                   ${v.title}
-                 </a>
-               `).join('')}
-            </div>
-          `;
-        }
-
         card.innerHTML = `
           <div class="card-img-wrapper" style="aspect-ratio: 1/1; margin-bottom: 24px;">
-            <img src="./public/${imgUrl}" style="object-fit:cover; padding: 0;" alt="${act.title}" loading="lazy">
-            ${videoButtons}
+            <img src="./public/${act.image}" style="object-fit:cover; padding: 0;" alt="${act.title}" loading="lazy">
           </div>
           <div class="card-title">${act.title}</div>
-          <div class="card-desc" style="margin-bottom:0;">${act.description}</div>
+          <div class="card-desc">${act.description}</div>
         `;
         container.appendChild(card);
       });
     }
 
-    // Modal Operations
     const modal = document.getElementById('modal');
     function openModal(idx) {
       const p = projects[idx];
-      const imgUrl = resolveUrl(p.image, true);
-      
-      document.getElementById('modal-img-main').src = imgUrl;
+      document.getElementById('modal-img-main').src = "./public/" + p.image;
       document.getElementById('modal-category').innerText = p.category;
       document.getElementById('modal-title').innerText = p.title;
-      document.getElementById('modal-desc').innerHTML = p.fullDescription || p.description;
-      
+      document.getElementById('modal-desc').innerHTML = p.fullDescription;
       const detailsContainer = document.getElementById('modal-details');
       detailsContainer.innerHTML = '';
       if(p.detailImages) {
-        p.detailImages.forEach(imgId => {
+        p.detailImages.forEach(img => {
           const el = document.createElement('img');
-          el.src = resolveUrl(imgId, true);
-          el.loading = "lazy";
+          el.src = img;
           detailsContainer.appendChild(el);
         });
       }
-      
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -649,48 +594,20 @@
     function closeModal() {
       modal.classList.remove('active');
       document.body.style.overflow = '';
-      document.getElementById('modal-img-main').src = "";
-      document.getElementById('modal-details').innerHTML = '';
     }
 
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-
-    // Footer Toggle Logics
-    let isPhoneVisible = false;
     function togglePhone() {
       const label = document.getElementById('phone-label');
       const number = document.getElementById('phone-number');
-      isPhoneVisible = !isPhoneVisible;
-      
-      if (isPhoneVisible) {
-        label.style.display = 'none';
-        number.style.display = 'block';
-        number.className = 'animate-down';
-      } else {
-        label.style.display = 'block';
-        number.style.display = 'none';
-        label.className = 'animate-up';
-      }
+      const isVisible = label.style.display === 'none';
+      label.style.display = isVisible ? 'block' : 'none';
+      number.style.display = isVisible ? 'none' : 'block';
     }
 
-    function showQR() {
-      const qr = document.getElementById('wechat-qr');
-      qr.style.display = 'block';
-      qr.className = 'animate-qr';
-    }
+    function showQR() { document.getElementById('wechat-qr').style.display = 'block'; }
+    function hideQR() { document.getElementById('wechat-qr').style.display = 'none'; }
 
-    function hideQR() {
-      const qr = document.getElementById('wechat-qr');
-      qr.style.display = 'none';
-    }
-
-    // Boot
-    window.onload = () => {
-      initPortfolio();
-      initLife();
-    };
+    window.onload = () => { initPortfolio(); initLife(); };
   </script>
 </body>
 </html>
