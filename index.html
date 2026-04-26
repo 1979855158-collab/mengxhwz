@@ -29,7 +29,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      scroll-behavior: smooth; /* 让跳转更丝滑 */
+      scroll-behavior: smooth;
     }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
@@ -130,21 +130,6 @@
     @media (min-width: 768px) { .section-title { font-size: 48px; } }
     .section-title span { color: var(--color-accent-red); }
     
-    /* About */
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
-    @media (min-width: 1024px) { .about-grid { grid-template-columns: 1fr 3fr; } }
-    .about-label { font-size: 10px; color: var(--color-text-sub); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 32px; display: block; }
-    .about-text { font-size: 14px; color: var(--color-text-bio); margin-bottom: 32px; }
-    .about-lists { display: grid; grid-template-columns: 1fr; gap: 48px; }
-    @media (min-width: 768px) { .about-lists { grid-template-columns: 1fr 1fr; } }
-    .timeline-item { margin-bottom: 20px; }
-    .timeline-date { font-size: 11px; color: var(--color-accent-red); font-weight: 600; margin-bottom: 4px; display: block; }
-    .timeline-title { font-size: 13px; font-weight: 500; display: block; }
-    .timeline-desc { font-size: 13px; font-weight: 500; opacity: 0.6; display: block; }
-
-    .tag { display: inline-block; border: 1px solid var(--color-border-dark); padding: 4px 10px; font-size: 11px; color: var(--color-text-tag); margin: 0 4px 8px 0; transition: all 0.3s; }
-    .tag:hover { border-color: var(--color-accent-red); color: white; }
-
     /* Portfolio Cards */
     .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media (min-width: 768px) { .portfolio-grid { grid-template-columns: 1fr 1fr; } }
@@ -210,23 +195,6 @@
     .email-link:hover { border-color: var(--color-accent-red); }
     .footer-bottom { border-top: 1px solid var(--color-border-light); padding-top: 24px; font-size: 11px; color: var(--color-text-sub); letter-spacing: 1px; }
 
-    /* Animations */
-    @keyframes slideUpFade {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes slideDownFade {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes qrEntry {
-      from { opacity: 0; transform: translateY(10px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .animate-up { animation: slideUpFade 0.3s ease-out forwards; }
-    .animate-down { animation: slideDownFade 0.3s ease-out forwards; }
-    .animate-qr { animation: qrEntry 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-    
     #wechat-qr {
       position: absolute; bottom: calc(100% + 12px); right: 0; 
       width: 160px; height: 160px; background: white; 
@@ -234,22 +202,8 @@
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
       z-index: 100; display: none;
       border: 1px solid #ddd;
-      transform-origin: bottom center;
     }
     #wechat-qr img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
-    .qr-triangle {
-      position: absolute; top: 100%; right: 20px; 
-      width: 0; height: 0; 
-      border-left: 8px solid transparent; 
-      border-right: 8px solid transparent; 
-      border-top: 8px solid white;
-    }
-
-    /* Custom Scrollbar for Modal */
-    .modal-content::-webkit-scrollbar { width: 8px; }
-    .modal-content::-webkit-scrollbar-track { background: var(--color-bg-card); }
-    .modal-content::-webkit-scrollbar-thumb { background: var(--color-border-dark); }
-    .modal-content::-webkit-scrollbar-thumb:hover { background: var(--color-text-sub); }
   </style>
 </head>
 <body>
@@ -274,90 +228,42 @@
         <h2>UX Designer / 工业设计</h2>
         <p>以前瞻性视角探索数字交互、物理空间与产品逻辑的边界。</p>
         <div class="btn-group">
-          <a href="#portfolio" class="btn btn-primary">
-            探索作品
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
+          <a href="#portfolio" class="btn btn-primary">探索作品</a>
           <a href="#contact" class="btn btn-outline">联系我</a>
-          <a href="./public/孟祥昊_产品体验设计师_韩国弘益大学硕士_2026届应届毕业生.pdf" download class="btn btn-outline">
-            下载简历
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          </a>
+          <a href="./public/孟祥昊_产品体验设计师_韩国弘益大学硕士_2026届应届毕业生.pdf" download class="btn btn-outline">下载简历</a>
         </div>
       </div>
       <div class="hero-image-wrapper">
         <div class="hero-image-frame"></div>
         <div class="hero-image-box">
-          <img src="./public/portrait.webp" alt="Meng Xianghao Portrait">
+          <img src="./public/portrait.webp" alt="Portrait">
         </div>
       </div>
     </div>
   </section>
 
   <section id="about" class="content">
-    <div class="container about-grid">
-      <div>
-        <span class="about-label">About Me</span>
-        <p class="about-text">拥有 7 年韩国设计教育背景，擅长运用 UX 思维解决跨领域体验问题。我坚持“以人为本”的理性推导，致力于平衡技术、美学与真实的人性需求。</p>
-        <span class="about-label" style="margin-bottom: 16px;">Languages</span>
-        <div style="font-size: 11px; color: var(--color-text-sub); display: flex; flex-direction: column; gap: 8px;">
-          <div><span style="color:var(--color-accent-red); margin-right:8px;">></span>中文 (母语)</div>
-          <div><span style="color:var(--color-accent-red); margin-right:8px;">></span>韩语 (精通)</div>
-        </div>
-      </div>
-      
-      <div class="about-lists">
-        <div>
-          <span class="about-label">Education</span>
-          <div class="timeline-item">
-            <span class="timeline-date">2023 - 2026 (预计)</span>
-            <span class="timeline-title">韩国弘益大学 (硕士在读)</span>
-            <span class="timeline-desc">工业设计 / UX方向</span>
-          </div>
-          <div class="timeline-item">
-            <span class="timeline-date">2019 - 2023</span>
-            <span class="timeline-title">韩国建国大学 (学士)</span>
-            <span class="timeline-desc">工业设计</span>
-          </div>
-        </div>
-        <div>
-          <span class="about-label">Expertise</span>
-          <div>
-            <span class="tag">Figma</span>
-            <span class="tag">Rhino</span>
-            <span class="tag">KeyShot</span>
-            <span class="tag">Adobe Suite</span>
-            <span class="tag">Midjourney</span>
-            <span class="tag">UX Research</span>
-            <span class="tag">Prototyping</span>
-          </div>
-        </div>
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom:40px;">ABOUT <span>/</span> 关于我</h2>
+      <p style="color: var(--color-text-bio); max-width: 800px; margin-bottom: 32px;">拥有 7 年韩国设计教育背景，擅长运用 UX 思维解决跨领域体验问题。</p>
+      <div style="font-size: 12px; color: var(--color-text-sub);">
+        <p>韩国弘益大学 (硕士在读) | 工业设计 / UX方向</p>
+        <p>韩国建国大学 (学士) | 工业设计</p>
       </div>
     </div>
   </section>
 
   <section id="portfolio" class="content">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">PORTFOLIO <span>/</span> 作品集</h2>
-        <div style="text-align: right; display:none;" id="location-ui">
-          <span class="hero-label" style="margin-bottom: 4px;">Location</span>
-          <div style="font-size:14px;">SEOUL</div>
-        </div>
-      </div>
-      
-      <div class="portfolio-grid" id="portfolio-container">
-        </div>
+      <h2 class="section-title" style="margin-bottom:60px;">PORTFOLIO <span>/</span> 作品集</h2>
+      <div class="portfolio-grid" id="portfolio-container"></div>
     </div>
   </section>
 
   <section id="beyond" class="content">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">MY LIFE <span>/</span> 生活中的我</h2>
-      </div>
-      <div class="portfolio-grid" id="life-container">
-         </div>
+      <h2 class="section-title" style="margin-bottom:60px;">MY LIFE <span>/</span> 生活中的我</h2>
+      <div class="portfolio-grid" id="life-container"></div>
     </div>
   </section>
 
@@ -365,49 +271,26 @@
     <div class="container">
       <div class="footer-top">
         <div>
-          <h2>诚邀创意合作，同时我也在求职全职岗位 <span>/</span></h2>
+          <h2>诚邀合作 <span>/</span></h2>
           <p style="color: var(--color-text-sub); font-size: 14px;">期待与你相遇，一起做有意义的设计。</p>
         </div>
         <div class="footer-contact">
-          <a href="mailto:mengxianghao@163.com" class="email-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; margin-right: 12px; color: var(--color-text-sub);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            mengxianghao@163.com
-          </a>
-          
-          <div style="position: relative; cursor: pointer; color: var(--color-text-sub); transition: color 0.3s;" 
-                onclick="togglePhone()" id="phone-container">
-            <span id="phone-label" class="animate-in" style="font-size: 14px; font-weight: 500; letter-spacing: 1px;">电话 / PHONE</span>
-            <span id="phone-number" class="animate-in" style="display: none; color: white; font-size: 14px; font-weight: 600; letter-spacing: 2px;">+86 17639107673</span>
-          </div>
-
-          <div style="position: relative;" onmouseover="showQR()" onmouseout="hideQR()">
-            <div style="font-size: 14px; font-weight: 500; letter-spacing: 1px; cursor: pointer; color: var(--color-accent-red);">
-              微信扫码可见 / WECHAT
-            </div>
-            <div id="wechat-qr" class="animate-in">
-              <img src="./public/wechat-qr.webp" alt="WeChat QR">
-              <div class="qr-triangle"></div>
-            </div>
+          <a href="mailto:mengxianghao@163.com" class="email-link">mengxianghao@163.com</a>
+          <div onmouseover="showQR()" onmouseout="hideQR()" style="position:relative; cursor:pointer; color:var(--color-accent-red);">
+            微信扫码可见 / WECHAT
+            <div id="wechat-qr"><img src="./public/wechat-qr.webp"></div>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        语言能力：中文 (母语) / 韩语 (流利)<br><br>
-        生活中的我：热爱生活 / 喜欢烹饪 / 喜欢旅行 / 喜欢游戏
-      </div>
+      <div class="footer-bottom">© 2026 MENG XIANGHAO. All rights reserved.</div>
     </div>
   </footer>
 
   <div id="modal">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
-      <div class="modal-hero-img">
-        <img id="modal-img-main" src="./public/" alt="">
-      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-hero-img"><img id="modal-img-main" src=""></div>
       <div class="modal-body">
-        <div class="card-cat" id="modal-category" style="margin-bottom: 16px;"></div>
         <h2 id="modal-title"></h2>
         <div class="full-desc" id="modal-desc"></div>
         <div class="modal-detail-images" id="modal-details"></div>
@@ -416,106 +299,10 @@
   </div>
 
   <script>
-    // --- GLOBAL CONFIG ---
-    const CONFIG = {
-      useLocal: false, 
-      localPath: "./images/"
-    };
-
-    function resolveUrl(idOrPath, isHighRes = false) {
-      if (!idOrPath) return "";
-      if (idOrPath.startsWith("./") || idOrPath.startsWith("/") || idOrPath.startsWith("http")) return idOrPath;
-      return `${CONFIG.localPath}${idOrPath}.jpg`;
-    }
-
-    // Navbar Scroll Effect
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
-      if(window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
-
-    if (window.innerWidth >= 768) {
-      const locUI = document.getElementById('location-ui');
-      if(locUI) locUI.style.display = 'block';
-    }
-
-    // --- DATA ---
     const projects = [
-      {
-        title: "梦到（꾸며)",
-        category: "数字交互体验 (UX Design)",
-        description: "基于 AI 视觉与 Web3 技术的梦境社交系统。解决醒后遗忘痛点，集成 AI 可视化与 NFT 版权保护。",
-        image: "mengdao.webp",
-        detailImages: [
-          "./public/mengdao/mengxq2-1.webp", "./public/mengdao/mengxq2-2.webp", "./public/mengdao/mengxq2-3.webp",
-          "./public/mengdao/mengxq2-4.webp", "./public/mengdao/mengxq2-5.webp", "./public/mengdao/mengxq2-6.webp",
-          "./public/mengdao/mengxq2-7.webp", "./public/mengdao/mengxq2-8.webp", "./public/mengdao/mengxq2-9.webp",
-          "./public/mengdao/mengxq2-10.webp", "./public/mengdao/mengxq2-11.webp", "./public/mengdao/mengxq2-12.webp",
-          "./public/mengdao/mengxq2-13.webp", "./public/mengdao/mengxq2-14.webp", "./public/mengdao/mengxq2-15.webp",
-          "./public/mengdao/mengxq2-16.webp", "./public/mengdao/mengxq2-17.webp", "./public/mengdao/mengxq2-18.webp",
-          "./public/mengdao/mengxq2-19.webp", "./public/mengdao/mengxq2-20.webp", "./public/mengdao/mengxq2-21.webp",
-          "./public/mengdao/mengxq2-22.webp", "./public/mengdao/mengxq2-23.webp", "./public/mengdao/mengxq2-24.webp",
-          "./public/mengdao/mengxq2-25.webp", "./public/mengdao/mengxq2-26.webp", "./public/mengdao/mengxq2-27.webp",
-          "./public/mengdao/mengxq2-28.webp", "./public/mengdao/mengxq2-29.webp", "./public/mengdao/mengxq2-30.webp",
-          "./public/mengdao/mengxq2-31.webp"
-        ],
-        fullDescription: "<p style='margin-bottom: 16px;'>《梦到（꾸며)》是一个基于人工智能视觉生成与 Web3 技术的全新梦境社交系统。</p>"
-      },
-      {
-        title: "YUNYOU",
-        category: "数字交互体验 (UX Design)",
-        description: "面向开放世界游戏玩家的 SNS 互助平台。针对组队、健康管理及安全交易的闭环设计。",
-        image: "yunyou/新封面.webp",
-        detailImages: [
-          "./public/yunyou/slide-16_9---10.webp",
-          "./public/yunyou/file-cover---1.webp",
-          "./public/yunyou/file-cover---2.webp",
-          "./public/yunyou/file-cover---3.webp",
-          "./public/yunyou/file-cover---4.webp",
-          "./public/yunyou/file-cover---5.webp",
-          "./public/yunyou/file-cover---6.webp",
-          "./public/yunyou/file-cover---7.webp",
-          "./public/yunyou/file-cover---8.webp",
-          "./public/yunyou/file-cover---9.webp",
-          "./public/yunyou/file-cover---10.webp",
-          "./public/yunyou/file-cover---11.webp",
-          "./public/yunyou/file-cover---12.webp",
-          "./public/yunyou/file-cover---13.webp",
-          "./public/yunyou/file-cover---14.webp"
-        ],
-        fullDescription: "<p style='margin-bottom: 16px;'>《YUNYOU》是一个专为开放世界游戏玩家打造的 SNS 互助与社交平台。</p>"
-      },
-      {
-        title: "旧时光（죠시광 탕수и)",
-        category: "空间叙事 (Spatial Design)",
-        description: "韩国首尔紫阳洞传统糖水铺商业空间。融合白橡木与青花瓷元素。",
-        image: "jsgfm.webp",
-        detailImages: ["./public/jsg.webp"],
-        fullDescription: "<p>《旧时光》空间设计。</p>"
-      },
-      {
-        title: "Escort",
-        category: "产品设计 (Product Design)",
-        description: "阿尔茨海默病患者陪伴与照护系统。",
-        image: "escort/escortfm.webp",
-        detailImages: [
-          "./public/escort/escort.webp", "./public/escort/escortui (1).webp", "./public/escort/escortui (2).webp",
-          "./public/escort/escortui (3).webp", "./public/escort/escortui (4).webp", "./public/escort/escortui (5).webp"
-        ],
-        fullDescription: "<p>《Escort》照护系统。</p>"
-      },
-      {
-        title: "Mosquito Grave",
-        category: "产品设计 (Product Design)",
-        description: "基于生物模拟原理的公共防蚊设施。",
-        image: "Mosquito Grave/wenzifm.webp",
-        detailImages: ["./public/Mosquito Grave/wenzixq.webp"],
-        fullDescription: "<p>《Mosquito Grave》设计。</p>"
-      }
+      { title: "梦到（꾸며)", category: "UX Design", image: "mengdao.webp", description: "基于 AI 视觉的梦境社交系统。" },
+      { title: "YUNYOU", category: "UX Design", image: "yunyou/新封面.webp", description: "游戏玩家 SNS 互助平台。" },
+      { title: "旧时光", category: "Spatial Design", image: "jsgfm.webp", description: "传统糖水铺商业空间设计。" }
     ];
 
     const activities = [
@@ -529,83 +316,70 @@
         title: "没事儿就爱旅点儿游",
         description: "人就应该待在没有天花板的地方。",
         image: "lvxingfm.webp",
-        videos: [{ title: "新疆旅行", url: "https://v.douyin.com/VvgoRpvBiXc/" }]
+        videos: [
+          { title: "新疆旅行", url: "https://v.douyin.com/VvgoRpvBiXc/" },
+          { title: "福建旅行", url: "https://v.douyin.com/ZoP0jcP3DP0/" }
+        ]
       }
     ];
 
     function initPortfolio() {
       const container = document.getElementById('portfolio-container');
-      if(!container) return;
-      projects.forEach((proj, idx) => {
+      projects.forEach((p, i) => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.onclick = () => openModal(idx);
-        card.innerHTML = `
-          <div class="card-cat">${proj.category}</div>
-          <div class="card-title">${proj.title}</div>
-          <div class="card-desc">${proj.description}</div>
-          <div class="card-img-wrapper">
-            <img src="./public/${proj.image}" alt="${proj.title}" loading="lazy">
-            <div class="card-num">0${idx + 1}</div>
-          </div>
-          <div class="card-action">View Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
-        `;
+        card.onclick = () => openModal(i);
+        card.innerHTML = `<div class="card-cat">${p.category}</div><div class="card-title">${p.title}</div><div class="card-img-wrapper"><img src="./public/${p.image}"></div>`;
         container.appendChild(card);
       });
     }
 
     function initLife() {
       const container = document.getElementById('life-container');
-      if(!container) return;
       activities.forEach(act => {
         const card = document.createElement('div');
         card.className = 'card';
+        
+        // --- 核心修复：重新加入视频按钮逻辑 ---
+        let videoOverlay = '';
+        if (act.videos) {
+          videoOverlay = `
+            <div class="video-overlay" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:rgba(0,0,0,0.6); opacity:0; transition:0.3s; z-index:10;">
+              ${act.videos.map(v => `
+                <a href="${v.url}" target="_blank" style="background:var(--color-accent-red); color:white; padding:8px 15px; border-radius:20px; font-size:11px; font-weight:bold;">▶ ${v.title}</a>
+              `).join('')}
+            </div>
+          `;
+        }
+
         card.innerHTML = `
-          <div class="card-img-wrapper" style="aspect-ratio: 1/1; margin-bottom: 24px;">
-            <img src="./public/${act.image}" style="object-fit:cover; padding: 0;" alt="${act.title}" loading="lazy">
+          <div class="card-img-wrapper" style="position:relative; aspect-ratio:1/1;" onmouseover="this.querySelector('.video-overlay').style.opacity='1'" onmouseout="this.querySelector('.video-overlay').style.opacity='0'">
+            <img src="./public/${act.image}" style="object-fit:cover; width:100%; height:100%;">
+            ${videoOverlay}
           </div>
-          <div class="card-title">${act.title}</div>
-          <div class="card-desc">${act.description}</div>
+          <div class="card-title" style="margin-top:15px;">${act.title}</div>
+          <p style="font-size:12px; color:var(--color-text-sub);">${act.description}</p>
         `;
         container.appendChild(card);
       });
     }
 
+    // Modal & UI Utils
     const modal = document.getElementById('modal');
     function openModal(idx) {
       const p = projects[idx];
       document.getElementById('modal-img-main').src = "./public/" + p.image;
-      document.getElementById('modal-category').innerText = p.category;
       document.getElementById('modal-title').innerText = p.title;
-      document.getElementById('modal-desc').innerHTML = p.fullDescription;
-      const detailsContainer = document.getElementById('modal-details');
-      detailsContainer.innerHTML = '';
-      if(p.detailImages) {
-        p.detailImages.forEach(img => {
-          const el = document.createElement('img');
-          el.src = img;
-          detailsContainer.appendChild(el);
-        });
-      }
       modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
     }
-
-    function closeModal() {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function togglePhone() {
-      const label = document.getElementById('phone-label');
-      const number = document.getElementById('phone-number');
-      const isVisible = label.style.display === 'none';
-      label.style.display = isVisible ? 'block' : 'none';
-      number.style.display = isVisible ? 'none' : 'block';
-    }
-
+    function closeModal() { modal.classList.remove('active'); }
     function showQR() { document.getElementById('wechat-qr').style.display = 'block'; }
     function hideQR() { document.getElementById('wechat-qr').style.display = 'none'; }
+
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      window.scrollY > 50 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled');
+    });
 
     window.onload = () => { initPortfolio(); initLife(); };
   </script>
