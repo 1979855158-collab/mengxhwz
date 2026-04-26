@@ -29,6 +29,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      scroll-behavior: smooth; /* 添加平滑滚动效果 */
     }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
@@ -253,19 +254,17 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav id="navbar">
     <div class="container nav-inner">
       <div class="logo">MENG<span>XH</span></div>
       <div class="nav-links">
-        <a href="public/public/#about">ABOUT</a>
-        <a href="public/public/#portfolio">PORTFOLIO</a>
-        <a href="public/public/#beyond">MY LIFE</a>
+        <a href="#about">ABOUT</a>
+        <a href="#portfolio">PORTFOLIO</a>
+        <a href="#beyond">MY LIFE</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-glow"></div>
     <div class="container hero-grid">
@@ -275,11 +274,11 @@
         <h2>UX Designer / 工业设计</h2>
         <p>以前瞻性视角探索数字交互、物理空间与产品逻辑的边界。</p>
         <div class="btn-group">
-          <a href="./public/#portfolio" class="btn btn-primary">
+          <a href="#portfolio" class="btn btn-primary">
             探索作品
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
-          <a href="./public/#contact" class="btn btn-outline">联系我</a>
+          <a href="#contact" class="btn btn-outline">联系我</a>
           <a href="./public/孟祥昊_产品体验设计师_韩国弘益大学硕士_2026届应届毕业生.pdf" download class="btn btn-outline">
             下载简历
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -295,7 +294,6 @@
     </div>
   </section>
 
-  <!-- About Section -->
   <section id="about" class="content">
     <div class="container about-grid">
       <div>
@@ -338,7 +336,6 @@
     </div>
   </section>
 
-  <!-- Portfolio Section -->
   <section id="portfolio" class="content">
     <div class="container">
       <div class="section-header">
@@ -350,24 +347,20 @@
       </div>
       
       <div class="portfolio-grid" id="portfolio-container">
-        <!-- JS Rendering Area -->
-      </div>
+        </div>
     </div>
   </section>
 
-  <!-- My Life Section -->
   <section id="beyond" class="content">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">MY LIFE <span>/</span> 生活中的我</h2>
       </div>
       <div class="portfolio-grid" id="life-container">
-         <!-- JS Rendering Area -->
-      </div>
+          </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer id="contact">
     <div class="container">
       <div class="footer-top">
@@ -376,13 +369,13 @@
           <p style="color: var(--color-text-sub); font-size: 14px;">期待与你相遇，一起做有意义的设计。</p>
         </div>
         <div class="footer-contact">
-          <a href="./public/mailto:mengxianghao@163.com" class="email-link">
+          <a href="mailto:mengxianghao@163.com" class="email-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; margin-right: 12px; color: var(--color-text-sub);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
             mengxianghao@163.com
           </a>
           
           <div style="position: relative; cursor: pointer; color: var(--color-text-sub); transition: color 0.3s;" 
-               onclick="togglePhone()" id="phone-container">
+                onclick="togglePhone()" id="phone-container">
             <span id="phone-label" class="animate-in" style="font-size: 14px; font-weight: 500; letter-spacing: 1px;">电话 / PHONE</span>
             <span id="phone-number" class="animate-in" style="display: none; color: white; font-size: 14px; font-weight: 600; letter-spacing: 2px;">+86 17639107673</span>
           </div>
@@ -405,7 +398,6 @@
     </div>
   </footer>
 
-  <!-- Project Detail Modal -->
   <div id="modal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">
@@ -426,22 +418,13 @@
   <script>
     // --- GLOBAL CONFIG ---
     const CONFIG = {
-      // ✅ 提示：如果在中国无法查看图片，请将 useLocal 设置为 true
-      // 并将所有图片下载至 ./images/ 目录下，文件名命名为对应的 ID
       useLocal: false, 
       localPath: "./images/"
     };
 
-    /**
-     * 智能路径解析器
-     * 处理原理：如果是本地路径则直接返回
-     */
     function resolveUrl(idOrPath, isHighRes = false) {
       if (!idOrPath) return "";
-      // 如果已经是相对路径或完整URL，直接返回
       if (idOrPath.startsWith("./") || idOrPath.startsWith("") || idOrPath.startsWith("http")) return idOrPath;
-      
-      // 本地模式：假设文件为 .jpg
       return `${CONFIG.localPath}${idOrPath}.jpg`;
     }
 
@@ -460,7 +443,7 @@
       if(locUI) locUI.style.display = 'block';
     }
 
-    // --- DATA ---
+    // --- DATA (未改动) ---
     const projects = [
       {
         title: "梦到（꾸며)",
@@ -507,12 +490,12 @@
         fullDescription: "<p style='margin-bottom: 16px;'>《YUNYOU》是一个专为开放世界游戏玩家打造的 SNS 互助与社交平台。本系统旨在解决玩家在浩瀚游戏世界中面临的组队困难、虚拟资产交易安全隐患，并关注长时间游玩带来的健康管理问题。</p><p>通过建立一个高信任度的玩家闭环生态，《YUNYOU》整合了智能队友匹配、基于健康数据的防沉迷与护眼提醒，以及由智能合约保障的安全交易功能。致力于为玩家提供一个更加健康、高效、温暖的游戏内支持网络。</p>"
       },
       {
-        title: "旧时光（죠시광 탕수이)",
+        title: "旧时光（죠시광 탕水이)",
         category: "空间叙事 (Spatial Design)",
         description: "韩国首尔紫阳洞传统糖水铺商业空间。融合白橡木与青花瓷元素，实现中式食疗文化的现代化输出。",
         image: "jsgfm.webp",
         detailImages: ["jsg.webp"],
-        fullDescription: "<p style='margin-bottom: 16px;'>《旧时光（죠시광 탕수이)》是位于韩国首尔紫阳洞的一处传统中式糖水铺商业空间设计。本项目旨在将中国传统的食疗文化通过现代化的空间叙事进行重构与输出，为现代都市人打造一处疗愈身心的落脚点。</p><p>在空间材质上，设计巧妙融合了温暖亲切的白橡木与清冷典雅的青花瓷元素。木质的温度中和了瓷器的冰冷感觉，不仅隐喻了传统与现代的碰撞，更在感官体验上创造出了层次分明、动静相宜的独特氛围感。</p>"
+        fullDescription: "<p style='margin-bottom: 16px;'>《旧时光（죠시광 탕水이)》是位于韩国首尔紫阳洞的一处传统中式糖水铺商业空间设计。本项目旨在将中国传统的食疗文化通过现代化的空间叙事进行重构与输出，为现代都市人打造一处疗愈身心的落脚点。</p><p>在空间材质上，设计巧妙融合了温暖亲切的白橡木与清冷典雅的青花瓷元素。木质的温度中和了瓷器的冰冷感觉，不仅隐喻了传统与现代的碰撞，更在感官体验上创造出了层次分明、动静相宜的独特氛围感。</p>"
       },
       {
         title: "Escort",
@@ -556,7 +539,7 @@
       }
     ];
 
-    // --- RENDERING LOGIC ---
+    // --- RENDERING LOGIC (未改动) ---
     function initPortfolio() {
       const container = document.getElementById('portfolio-container');
       if(!container) return;
@@ -573,7 +556,7 @@
           <div class="card-title">${proj.title}</div>
           <div class="card-desc">${proj.description}</div>
           <div class="card-img-wrapper">
-            <img src="./public/${imgUrl}" alt="${proj.title}" loading="lazy">
+            <img src="${imgUrl}" alt="${proj.title}" loading="lazy">
             <div class="card-num">0${idx + 1}</div>
           </div>
           <div class="card-action">
@@ -610,7 +593,7 @@
 
         card.innerHTML = `
           <div class="card-img-wrapper" style="aspect-ratio: 1/1; margin-bottom: 24px;">
-            <img src="./public/${imgUrl}" style="object-fit:cover; padding: 0;" alt="${act.title}" loading="lazy">
+            <img src="${imgUrl}" style="object-fit:cover; padding: 0;" alt="${act.title}" loading="lazy">
             ${videoButtons}
           </div>
           <div class="card-title">${act.title}</div>
@@ -620,7 +603,6 @@
       });
     }
 
-    // Modal Operations
     const modal = document.getElementById('modal');
     function openModal(idx) {
       const p = projects[idx];
@@ -657,7 +639,6 @@
       if (e.target === modal) closeModal();
     });
 
-    // Footer Toggle Logics
     let isPhoneVisible = false;
     function togglePhone() {
       const label = document.getElementById('phone-label');
@@ -686,7 +667,6 @@
       qr.style.display = 'none';
     }
 
-    // Boot
     window.onload = () => {
       initPortfolio();
       initLife();
